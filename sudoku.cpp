@@ -111,6 +111,21 @@ bool make_move(const char position[3], const char digit, char board[9][9]) {
 	return true;
 }
 
+//save_board outputs the 2D array board to a file with filename.
+
+bool save_board(const char* filename, const char board[9][9]) {
+	ofstream out_stream;
+	out_stream.open(filename);
+	for (int row = 0; row < 9; row++){
+		for(int col = 0; col < 9; col++) {
+			out_stream << board[row][col];
+		}
+		out_stream << endl;
+	}
+	out_stream.close();
+	return true;
+}
+
 
 
 
