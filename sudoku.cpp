@@ -90,12 +90,12 @@ bool is_complete(const char board[9][9]) {
 
 //make_move function which attempts to place a digit onto a Sudoku board at a given position
 
-bool make_move(char position[3], char digit, char board[9][9]) {
+bool make_move(const char position[3], const char digit, char board[9][9]) {
 	if (position[0] < 'A' || position[0] >'I' || position[1] < '1' || position[1] > '9') {
 		return false;
 	}
 	for (int row = 0; row < 9; row++) {
-		if (board[row][position[1] - 1] == digit) {
+		if (board[row][position[1] - '1'] == digit) {
 			return false;
 		}
 	}
@@ -103,8 +103,11 @@ bool make_move(char position[3], char digit, char board[9][9]) {
 		if (board[position[0] - 'A'][col] == digit) {
 			return false;
 		}
-	} 
-	board[position[0] - 'A'][position[1] - 1] = digit;
+	}
+
+	int position_row = position[0] - 'A';
+	int position_col = position[1] - '1';	
+	board[position_row][position_col] = digit;
 	return true;
 }
 
