@@ -72,3 +72,45 @@ void display_board(const char board[9][9]) {
 }
 
 /* add your functions here */
+
+//is_complete function which takes a 9x9 array of characters and check if the Sudoku board is fully occupied by digits
+
+bool is_complete(const char board[9][9]) {
+	for (int row = 0; row < 9; row++) {
+		for (int col = 0; col < 9; col++) {
+			if (!isdigit(board[row][col])) {
+					return false;
+			}
+		}
+	}
+	return true;
+}
+
+
+
+//make_move function which attempts to place a digit onto a Sudoku board at a given position
+
+bool make_move(char position[3], char digit, char board[9][9]) {
+	if (position[0] < 'A' || position[0] >'I' || position[1] < '1' || position[1] > '9') {
+		return false;
+	}
+	for (int row = 0; row < 9; row++) {
+		if (board[row][position[1] - 1] == digit) {
+			return false;
+		}
+	}
+	for (int col = 0; col < 9; col++) {
+		if (board[position[0] - 'A'][col] == digit) {
+			return false;
+		}
+	} 
+	board[position[0] - 'A'][position[1] - 1] = digit;
+	return true;
+}
+
+
+
+
+
+
+
