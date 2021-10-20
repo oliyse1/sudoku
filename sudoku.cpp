@@ -91,27 +91,38 @@ bool is_complete(const char board[9][9]) {
 //make_move function which attempts to place a digit onto a Sudoku board at a given position
 
 bool make_move(const char position[3], const char digit, char board[9][9]) {
+	
+	int position_row = position[0] - 'A';
+	int position_col = position[1] - '1';
+	
 	if (position[0] < 'A' || position[0] >'I' || position[1] < '1' || position[1] > '9') {
 		return false;
 	}
+	
 	for (int row = 0; row < 9; row++) {
-		if (board[row][position[1] - '1'] == digit) {
+		if (board[row][position_col] == digit) {
 			return false;
 		}
 	}
 	for (int col = 0; col < 9; col++) {
-		if (board[position[0] - 'A'][col] == digit) {
+		if (board[position_row][col] == digit) {
 			return false;
 		}
 	}
-
-	int position_row = position[0] - 'A';
-	int position_col = position[1] - '1';	
+	int section_row = position_row / 3;
+	int section_col = position_col / 3;
+	for (int row = 0; row < 3; row++) {
+		for (int col = 0; col < 3; col++) {
+			if (board[section_row * 3 + row][section_col * 3 + col] == digit) {
+				return false;
+			}
+		}
+	}	
 	board[position_row][position_col] = digit;
 	return true;
 }
 
-//save_board outputs the 2D array board to a file with filename.
+//save_board function outputs the 2D array board to a file with filename.
 
 bool save_board(const char* filename, const char board[9][9]) {
 	ofstream out_stream;
@@ -127,7 +138,46 @@ bool save_board(const char* filename, const char board[9][9]) {
 }
 
 
+//solve_board function attempts to solve the Sudoku puzzle
 
+bool solve_board(char board[9][9]) {
+	int row = 0;
+	int col = 0;
+	find_next_empty_position(row, col, board);
+
+	char position[2];
+	position[0] = 'A' + row;
+	position[1] = '1' + col;
+	for (char digit = '1'; digit <= '9'; digit++) {
+		if (make_move(position, digit, board)) {
+			if (is_complete(board)) {
+				return true;
+			} else {
+				if (solve_board(board)) {
+					return true;
+			        } else {
+					continue;
+				}
+			} 
+		} else {
+			continue;
+		}	
+	}
+	board[row][col] = '.';
+	return false;
+}
+				       	
+void find_next_empty_position(int &row, int &col, const char board[9][9]) {
+	for (row = 0; row < 9; row++) {
+		for (col = 0; col < 9; col++) {
+			if ((board[row][col] < '1') || (board[row][col] > '9')) {
+				return;
+			} else {
+				continue;
+			}
+		}
+	}
+}
 
 
 
