@@ -84,6 +84,48 @@ int main() {
   cout << "=================== Question 5 ===================\n\n";
 
   // write more tests
+  
+  // the tests below aim to solve the given sudoku board, while also keeping track and outputting the number of moves taken to solve the board
+	
+  int count; //this variable is for keeping track of the number of moves needed to solve a given board 
+	
+  //mystery1
+  load_board("mystery1.dat", board);
+  count = 0; 
+  if (solve_board(board, count)) {
+    cout << "The 'mystery1' board has a solution:\n";
+    display_board(board);
+    cout << "The number of moves taken to solve the board is " << count << ".\n";
+  } else {
+    cout << "A solution cannot be found.\n";
+  }
+  cout << '\n';
+
+  //mystery2
+  load_board("mystery2.dat", board);
+  count = 0; 
+  if (solve_board(board, count)) {
+    cout << "The 'mystery2' board has a solution:\n";
+    display_board(board);
+    cout << "The number of moves taken to solve the board is " << count << ".\n";
+  } else {
+    cout << "A solution cannot be found.\n";
+  }
+  cout << '\n';
+
+  //mystery3
+  load_board("mystery3.dat", board);
+  count = 0; 
+  if (solve_board(board, count)) {
+    cout << "The 'mystery3' board has a solution:\n";
+    display_board(board);
+    cout << "The number of moves taken to solve the board is " << count << ".\n";
+  } else {
+    cout << "A solution cannot be found.\n";
+  }
+  cout << '\n';
+
+
 
   return 0;
 }

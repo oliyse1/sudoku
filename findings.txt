@@ -1,1 +1,17 @@
 Summarise your findings here (see specification).
+
+Solution to question 5:
+
+For each of 'mystery1.dat', 'mystery2.dat', and 'mystery3.dat', if a solution exists, I have counted the number of successful moves made when solving the board, that is, the number of times the make_move function returns true for the board. In the perspective of the computer and my algorithm, the more moves needed to solve the board, the higher the difficulty level of the board.
+
+Output from tests under Question 5 in main.cpp:
+
+The board in 'mystery1.dat' requires 421,546 moves to be solved.
+
+The board 'mystery2.dat' cannot be solved.
+
+The board 'mystery3.dat' requires 14,133 moves to be solved.
+
+Therefore, the board in 'mystery1.dat' is of "extremely hard" difficulty, the board in 'mystery2.dat' is impossible to solve, and the board in 'mystery3.dat' is of "hard" difficulty.
+
+End of solution to question 5.

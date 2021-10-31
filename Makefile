@@ -1,5 +1,5 @@
 sudoku: main.o sudoku.o
-	g++ -g main.o sudoku.o -o sudoku
+	g++ main.o sudoku.o -o sudoku
 
 main.o: main.cpp sudoku.h
 	g++ -Wall -g -c main.cpp
@@ -7,5 +7,6 @@ main.o: main.cpp sudoku.h
 sudoku.o: sudoku.cpp sudoku.h
 	g++ -Wall -g -c sudoku.cpp
 
+.PHONY: clean
 clean:
-	rm -f *.o execute
+	rm -f main.o sudoku.o sudoku
